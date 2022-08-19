@@ -5,6 +5,7 @@ import AddMovie from './AddMovie';
 import EditMovie from './EditMovie';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Detail from './Detail'
 
 class App extends React.Component {
 
@@ -22,7 +23,7 @@ class App extends React.Component {
         this.setState({ movies: response.data })
     }
 
-    
+
 
 
     // DELETE MOVIE
@@ -54,12 +55,17 @@ class App extends React.Component {
         this.getMovies();
     }
 
-        // EDIT MOVIE
-        editMovie = async (id, updatedMovie) => {
-            await axios.put(`http://localhost:3002/movies/${id}`, updatedMovie)
-            this.getMovies();
-        }
+    // EDIT MOVIE
+    editMovie = async (id, updatedMovie) => {
+        await axios.put(`http://localhost:3002/movies/${id}`, updatedMovie)
+        this.getMovies();
+    }
 
+
+    detailMovie = async (id, detailMovie) => {
+        await axios.put(`http://localhost:3002/movies/${id}`, detailMovie)
+        this.getMovies();
+    }
     render() {
 
         let filteredMovies = this.state.movies.filter(
@@ -82,9 +88,16 @@ class App extends React.Component {
                             <React.Fragment>
                                 <div className="row">
                                     <div className="col-lg-12">
+                                        <nav class="navbar navbar-light bg-light static-top">
+                                            <div class="container">
+                                                <a class="navbar-brand" href="#!">BiletAll</a>
+                                                <a class="btn btn-md btn-danger  " style={{ float: 'right' }} href="#signup">Sign Up</a>
+                                            </div>
+                                        </nav>
                                         <SearchBar searchMovieProp={this.searchMovie} />
                                     </div>
                                 </div>
+
 
 
                                 <MovieList
@@ -124,7 +137,27 @@ class App extends React.Component {
 
                             />
 
+
                         )}>
+
+
+
+                        </Route>
+                        <Route path="/detail/:id" render={(props) => (
+
+                            <Detail
+                                {...props}
+                                onDetailMovie={(id, movie) => {
+                                    this.detailMovie(id, movie)
+                                }
+                                }
+
+                            />
+
+
+                        )}>
+
+
 
                         </Route>
 
