@@ -1,15 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import IncDecCounter from './InDecCounter';
+
+
+
+
+
+
 
 class Detail extends React.Component {
+
+
 
     state = {
         name: "",
         sale: "",
         overview: "",
         imageURL: "",
-        value: " "
+        value: " ",
+
 
     }
 
@@ -20,7 +30,16 @@ class Detail extends React.Component {
         const id = this.props.match.params.id;
         //console.log(id)
 
-        const response = await axios.get(`http://localhost:3002/movies/${id}`);
+
+
+
+
+
+
+
+        //then komutuna göre hata kodlarına göre işle.
+        const response = await axios.get(`http://localhost:3002/movies/${id}`)
+
         //console.log(response.data);
 
         const movie = response.data;
@@ -35,6 +54,32 @@ class Detail extends React.Component {
     }
 
 
+    /* showAlert = () => {
+
+        const [showAlert, setShowAlert] = useState(false);
+
+    }
+
+
+    handleShowAlert = () => this.setShowAlert(true); */
+
+    IncDecCounter() {
+        let [num, setNum] = useState(0);
+        let incNum = () => {
+            if (num < 10) {
+                setNum(Number(num) + 1);
+            }
+        };
+        let decNum = () => {
+            if (num > 0) {
+                setNum(num - 1);
+            }
+        }
+        let handleChange = (e) => {
+            setNum(e.target.value);
+        }
+    }
+
 
 
 
@@ -46,6 +91,11 @@ class Detail extends React.Component {
             [e.target.name]: e.target.value
         })
     }
+    onClick = () => {
+        this.setState({
+            userInput: 'Test'
+        })
+    }
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -55,13 +105,13 @@ class Detail extends React.Component {
                 const overview = this.state.overview;
                 const imageURL = this.state.imageURL; */
 
-        const { name, rating, overview, imageURL } = this.state;
+        const { name, sale, overview, imageURL } = this.state;
 
         const id = this.props.match.params.id;
 
         const detailMovie = {
             name,
-            rating,
+            sale,
             overview,
             imageURL
         }
@@ -80,6 +130,7 @@ class Detail extends React.Component {
 
 
 
+
     buyItem = (e) => {
 
         e.preventDefault();
@@ -90,41 +141,98 @@ class Detail extends React.Component {
             [e.target.value]: e.target.value
         })
 
-        console.log(`${e.target.value}`)
+        const ucret = (`${e.target.value}` * 100)
+        console.log(`${ucret}`)
+
+    }
+    CompleteItem = (e) => {
+
+
+        e.preventDefault();
+
+
+        console.log(`${e.target.value}` * this.state.sale)
+
+
+    }
 
 
 
-    };
+
+
+
 
     render() {
 
         return (
-            <section className="py-5" >
-                <div className="container px-4 px-lg-5 my-5">
-                    <div className="row gx-4 gx-lg-5 align-items-center">
+            <section className="py-6" >
+                <div className="container px-5 px-lg-5 my-5">
+                    <div className="row gx-6 gx-lg-6 align-items-center">
                         <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0" src={this.state.imageURL} alt="..." /></div>
-                        <div className="col-md-6">
+                        <div className="col-md-4">
 
-                            <h1 className="display-5 fw-bolder">{this.state.name}</h1>
-                            <div className="fs-5 mb-5">
+                            <h1 className="display-3 fw-bolder">{this.state.name}</h1>
+                            <div className="fs-4 mb-5">
                                 <span className="text-decoration-line-through">{this.state.sale}</span>
 
                             </div>
                             <p className="lead">{this.state.overview}</p>
-                            <div className="d-flex">
-                                <input className="form-control text-center me-3" id="inputQuantity" type="num" />
 
-                                <button onClick={this.nameChangeHandler} className="btn btn-outline-dark flex-shrink-0" type="button" value={this.value} >
+                            <div className='display-4 fw-bolder '>
+
+                                <IncDecCounter />
+
+                            </div>
 
 
 
-                                    <i onChange={this.nameChangeHandler} className="bi-cart-fill me-1"></i>
+
+
+
+
+                            {/* 
+                            <div className="d-grid gap-2">
+                                <button className="btn btn-outline-primary mr-3" onClick={this.buyItem} type="button" value="1">1</button>
+                                <button className="btn btn-outline-primary mr-1" onClick={this.buyItem} type="button" value="2">2</button>
+                                <button className="btn btn-outline-primary mr-3" onClick={this.buyItem} type="button" value="3">3</button>
+                                <button className="btn btn-outline-primary mr-1" onClick={this.buyItem} type="button" value="4">4</button>
+                                <button className="btn btn-outline-primary mr-3" onClick={this.buyItem} type="button" value="5">5</button>
+                                <button style={{ left: '-10px' }} className="btn btn-outline-dark flex-shrink-0 " value={this.buyItem} onClick={this.CompleteItem} type="button"  >
+
+
+
+
+                                    <i className="bi-cart-fill me-1"></i>
+                                    Satın Al
+                                </button> */}
+
+
+
+
+
+                            {/* 
+                            <div className="d-flex align-items-start flex-column mb-auto p-1 " style={{ height: '100px' }}>
+
+
+
+
+
+
+
+                                <button style={{ right: '50px' }} className="btn btn-outline-dark " onClick={this.CompleteItem} type="button"  >
+
+
+
+
+                                    <i className="bi-cart-fill me-1"></i>
                                     Satın Al
                                 </button>
-                            </div>
+
+                            </div> */}
                         </div>
                     </div>
                 </div>
+                {/* </div> */}
             </section >
         )
 

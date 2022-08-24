@@ -5,7 +5,7 @@ class EditMovie extends React.Component {
 
     state = {
         name: "",
-        rating: "",
+        sale: "",
         overview: "",
         imageURL: ""
     }
@@ -24,7 +24,7 @@ class EditMovie extends React.Component {
 
         this.setState({
             name: movie.name,
-            rating: movie.sale,
+            sale: movie.sale,
             overview: movie.overview,
             imageURL: movie.imageURL
         })
@@ -44,17 +44,17 @@ class EditMovie extends React.Component {
         e.preventDefault();
         /* 
                 const name = this.state.name;
-                const rating = this.state.rating;
+                const sale = this.state.sale;
                 const overview = this.state.overview;
                 const imageURL = this.state.imageURL; */
 
-        const { name, rating, overview, imageURL } = this.state;
+        const { name, sale, overview, imageURL } = this.state;
 
         const id = this.props.match.params.id;
 
         const updatedMovie = {
             name,
-            rating,
+            sale,
             overview,
             imageURL
         }
@@ -81,12 +81,12 @@ class EditMovie extends React.Component {
                                 onChange={this.onInputChange} />
                         </div>
                         <div className="form-group col-md-2">
-                            <label htmlFor="inputRating">Rating</label>
+                            <label htmlFor="inputSale">Sale</label>
                             <input
                                 type="text"
                                 className="form-control"
-                                name="rating"
-                                value={this.state.rating}
+                                name="sale"
+                                value={this.state.sale}
                                 onChange={this.onInputChange} />
                         </div>
                     </div>
