@@ -6,6 +6,9 @@ import EditMovie from './EditMovie';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Detail from './Detail'
+import Cards from './Cards'
+import CreditCard from './CreditCard'
+import utils from './utils'
 
 import { useState } from "react";
 
@@ -171,10 +174,10 @@ class App extends React.Component {
                         <Route path="/" exact render={() => (
                             <React.Fragment>
                                 <div className="row">
-                                    <div className="col-lg-12">
+                                    <div className="col-lg-11">
                                         <nav className="navbar navbar-light bg-light static-top">
                                             <div className="container">
-                                                <a className="navbar-brand" href="#!">BiletAll</a>
+                                                <a className="navbar-brand" href="#!">EventHall</a>
                                                 {/*  <a className="btn btn-md btn-danger  " style={{ float: 'right' }} onClick={(event) => this.showMore(this.addMovie)} href="#signup">Admin </a> */}
                                                 {/* <a className="btn btn-md btn-danger  " style={{ float: 'right' }} onClick={(event) => this.showMore(this.setState.deleteMovie)} href="#signup">Admin </a> */}
 
@@ -252,6 +255,17 @@ class App extends React.Component {
 
 
 
+
+                        </Route>
+                        <Route path="/creditcard" render={({ history }) => (
+
+                            <CreditCard
+
+
+
+                            />
+
+                        )}>
 
                         </Route>
 

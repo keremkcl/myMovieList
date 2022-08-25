@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
 
 
                 <div className="form-row mb-5" >
-                    <div className="col-10" style={{ top: '40px' }}>
+                    <div className="col-12" style={{ top: '40px' }}>
                         <input
 
                             onChange={this.props.searchMovieProp}
@@ -31,7 +31,7 @@ class SearchBar extends React.Component {
 
 
 
-                    <div className="col-12" style={{ left: '-40px' }}>
+                    <div className="col-12" style={{ right: '-120px', width: '30px' }}>
                         <Link
                             to="/add"
                             type="button"

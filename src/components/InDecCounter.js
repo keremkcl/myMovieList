@@ -1,7 +1,8 @@
-
+import { Link } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import React from 'react';
 import { useState } from "react";
+import { MdAddShoppingCart } from 'react-icons/md'
 function IncDecCounter() {
 
 
@@ -63,10 +64,20 @@ function IncDecCounter() {
                     <div className="input-group-prepend">
                         <button className="btn btn-outline-primary " style={{ right: "50px " }} type="button" value={num} onClick={incNum}>+</button>
 
-                        <button className="btn btn-outline-dark " value={num} style={{ right: "20px" }} type="submit" onClick={setShowAlert}  >
-                            <i className="bi-cart-fill me-1"></i>
-                            Satın Alın
-                        </button>
+                        <div className="col-12  " style={{ left: '-30px', width: '30px' }}>
+                            <Link
+
+                                to="/creditcard"
+                                type="button"
+                                className="btn btn-md btn-danger"
+
+                                style={{ float: 'right' }}>
+                                <MdAddShoppingCart />
+
+                            </Link>
+
+
+                        </div>
 
                     </div>
                     <div>

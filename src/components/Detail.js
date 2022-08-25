@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import IncDecCounter from './InDecCounter';
+import { IconName } from "react-icons/md";
 
 
 
@@ -56,7 +57,7 @@ class Detail extends React.Component {
 
     /* showAlert = () => {
 
-        const [showAlert, setShowAlert] = useState(false);
+        const [showAlert, setShowAlert] = useState(false);14r
 
     }
 
