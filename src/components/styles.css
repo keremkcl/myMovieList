@@ -123,4 +123,9 @@ form {
         margin-top: 0;
         margin-left: 18px;
     }
+
+    .App {
+        font-family: sans-serif;
+        text-align: center;
+    }
 }

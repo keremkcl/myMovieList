@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import IncDecCounter from './InDecCounter';
 import { IconName } from "react-icons/md";
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -30,12 +30,6 @@ class Detail extends React.Component {
 
         const id = this.props.match.params.id;
         //console.log(id)
-
-
-
-
-
-
 
 
         //then komutuna göre hata kodlarına göre işle.
@@ -99,6 +93,7 @@ class Detail extends React.Component {
     }
 
     handleFormSubmit = (e) => {
+
         e.preventDefault();
         /* 
                 const name = this.state.name;
@@ -184,6 +179,9 @@ class Detail extends React.Component {
                                 <IncDecCounter />
 
                             </div>
+
+
+
 
 
 

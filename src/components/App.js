@@ -9,10 +9,15 @@ import Detail from './Detail'
 import Cards from './Cards'
 import CreditCard from './CreditCard'
 import utils from './utils'
+import thunk from "redux-thunk"
+import { reducer } from 'react';
+import Basket from './Basket'
+
+import { applyMiddleware } from "redux";
+import { legacy_createStore as createStore } from "redux"
+
 
 import { useState } from "react";
-
-
 
 
 
@@ -27,7 +32,37 @@ class App extends React.Component {
         searchQuery: "",
         showContent: false,
         admin: [],
-        user: []
+        user: [],
+        movies: [
+            {
+                "name": "The Matrix 3",
+                "sale": "100$",
+                "imageURL": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg",
+                "overview": "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+                "id": 14
+            },
+            {
+                "name": "The Matrix Reloaded",
+                "sale": "100$",
+                "overview": "Six months after the events depicted in The Matrix, Neo has proved to be a good omen for the free humans, as more and more humans are being freed from the matrix and brought to Zion, the one and only stronghold of the Resistance. Neo himself has discovered his superpowers including super speed, ability to see the codes of the things inside the matrix and a certain degree of pre-cognition.",
+                "imageURL": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jBegA6V243J6HUnpcOILsRvBnGb.jpg",
+                "id": 8
+            },
+            {
+                "name": "Saw 3D",
+                "sale": "100$",
+                "overview": "SAW legacy, a group of Jigsaw survivors gathers to seek the support of self-help guru and fellow survivor Bobby Dagen, a man whose own dark secrets unleash a new wave of terror.",
+                "imageURL": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qHCZ6LjtmqWDfXXN28TlIC9OppK.jpg",
+                "id": 11
+            },
+            {
+                "name": "Hostage",
+                "sale": "100$",
+                "overview": "When a mafia accountant is taken hostage on his beat, a police officer – wracked by guilt from a prior stint as a negotiator – must negotiate the standoff, even as his own family is held captive by the mob.",
+                "imageURL": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4hne3v6jN4MlCnhSkxOW7YspJhr.jpg",
+                "id": 13
+            },
+        ]
 
     }
 
@@ -115,7 +150,11 @@ class App extends React.Component {
         this.setState({ searchQuery: event.target.value })
     }
 
+
     //Show
+    Store = () => {
+        const store = createStore(reducer, [applyMiddleware(thunk)]);
+    }
 
 
 
@@ -144,6 +183,11 @@ class App extends React.Component {
 
     detailMovie = async (id, detailMovie) => {
         await axios.put(`http://localhost:3002/movies/${id}`, detailMovie)
+        this.getMovies();
+    }
+
+    basketMovie = async (id, basketMovie) => {
+        await axios.put(`http://localhost:3002/movies/${id}`, basketMovie)
         this.getMovies();
     }
     render() {
@@ -257,9 +301,17 @@ class App extends React.Component {
 
 
                         </Route>
-                        <Route path="/creditcard" render={({ history }) => (
+                        <Route path="/creditcard/:id" render={({ props }) => (
 
                             <CreditCard
+                                movies={this.state.movies}
+                                {...props}
+                                onBasketMovie={(id, movie) => {
+
+                                    this.basketMovie(id, movie)
+
+                                }
+                                }
 
 
 

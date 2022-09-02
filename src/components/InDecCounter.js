@@ -56,7 +56,10 @@ function IncDecCounter() {
     return (
         <>
             <div className="col-l-3 row-2">
-                <div className="input-group">
+
+
+
+                <div className="input-group" >
                     <div className="input-group-prepend">
                         <button className="btn btn-outline-primary" style={{ left: "47px" }} type="button" value={num} onClick={decNum}>-</button>
                     </div>
@@ -67,7 +70,7 @@ function IncDecCounter() {
                         <div className="col-12  " style={{ left: '-30px', width: '30px' }}>
                             <Link
 
-                                to="/creditcard"
+                                to="/creditcard/id "
                                 type="button"
                                 className="btn btn-md btn-danger"
 
@@ -92,11 +95,14 @@ function IncDecCounter() {
                 </div>
 
 
+
+
+
             </div>
             <div className='col-md-12 text-center'>
                 <button className="btn btn-outline-dark float-center  " value={num} type="submit" onClick={ItemCost}  >
                     {/*  <i style={{ right: "40px" }} className="bi-cart-fill me-1"></i> */}
-                    Ücret:{`${Number(num) * 100}$`}
+                    Ücret:{`${Number(num) * 100} $`}
                 </button>
                 <Alert style={{ width: "267px", right: "-30px", top: "10px" }} /* className="well well-xl " */ show={showAlert} variant="success" /*  onClose={() => setShow(false)} */ dismissible>
                     <i ></i>
