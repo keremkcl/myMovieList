@@ -163,13 +163,13 @@ class Detail extends React.Component {
         return (
             <section className="py-6" >
                 <div className="container px-5 px-lg-5 my-5">
-                    <div className="row gx-6 gx-lg-6 align-items-center">
+                    <div className="row gx-6 gx-lg-6 align-items-center" style={{ position: "relative", top: "50px" }}>
                         <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0" src={this.state.imageURL} alt="..." /></div>
                         <div className="col-md-4">
 
                             <h1 className="display-3 fw-bolder">{this.state.name}</h1>
                             <div className="fs-4 mb-5">
-                                <span className="text-decoration-line-through">{this.state.sale}</span>
+                                <span className="text-decoration-line-through" style={{ position: "relative", right: "-140px" }}>{this.state.sale}</span>
 
                             </div>
                             <p className="lead">{this.state.overview}</p>
